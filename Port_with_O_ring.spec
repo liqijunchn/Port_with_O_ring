@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['D:\\OneDrive\\GitHub\\Port_with_O_ring\\Port_with_O_ring.py'],
-             pathex=['D:\\OneDrive\\GitHub\\Port_with_O_ring'],
+a = Analysis(['C:\\OneDrive\\Port_with_O_ring-master\\Port_with_O_ring.py'],
+             pathex=['C:\\OneDrive\\Port_with_O_ring-master'],
              binaries=[],
              datas=[('threaded port with o ring.db','.'),('port.png','.'),('jci.ico','.')],
              hiddenimports=[],
@@ -25,5 +25,5 @@ exe = EXE(pyz,
           debug=False,
           strip=False,
           upx=True,
-          console=True,
+          console=False ,
           icon = './jci.ico' )

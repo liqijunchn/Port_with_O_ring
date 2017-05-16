@@ -40,12 +40,15 @@ class port_with_o_ring(QMainWindow):
         self.metric_tubing_OD_le =QLineEdit()
         self.as568_lb = QLabel('AS568')
         self.as568_le =QLineEdit()
+        self.minimum_hole_diameter =QLineEdit('d3')
 
         self.as568_le.setMaximumWidth(30)
         self.spotface_diameter_le.setMaximumWidth(40)
         self.o_ring_seat_diameter_le.setMaximumWidth(40)
         self.spotface_depth_le.setMaximumWidth(40)
-        self.minimum_drill_depth.setMaximumWidth(40)
+        self.minimum_drill_depth.setFixedWidth(55)
+        self.minimum_tap_depth.setFixedWidth(55)
+        self.minimum_hole_diameter.setFixedWidth(55)
 
         self.o_ring_size = QLabel('O ring size ID X W')
         self.o_ring_size_le = QLineEdit()
@@ -72,6 +75,7 @@ class port_with_o_ring(QMainWindow):
         grid.addWidget(self.minimum_drill_depth,7,18)
         grid.addWidget(self.pilot_hole_diameter,18,8)
         grid.addWidget(self.z_angle_le,6,3)
+        grid.addWidget(self.minimum_hole_diameter,17,8)
         grid.setHorizontalSpacing(10)
 
 
@@ -107,6 +111,7 @@ class port_with_o_ring(QMainWindow):
         self.setWindowTitle('Query Port with O ring')
         iconpath=self.resource_path('jci.ico')
         self.setWindowIcon(QIcon(iconpath))
+        self.setFixedSize(self.width(),self.height())
         self.show()
 
         # self.resize(600, 530)
@@ -165,9 +170,9 @@ class port_with_o_ring(QMainWindow):
         tmp=self.query('o_ring_seat_depth','nominal_tube_OD')
         self.o_ring_depth_le.setText(str(tmp[0]))
         tmp=self.query('minimum_thread_depth','nominal_tube_OD')
-        self.minimum_tap_depth.setText(str(tmp[0]))
+        self.minimum_tap_depth.setText('Min.'+str(tmp[0]))
         tmp=self.query('minimum_drill_depth','nominal_tube_OD')
-        self.minimum_drill_depth.setText(str(tmp[0]))
+        self.minimum_drill_depth.setText('Min.'+str(tmp[0]))
         tmp=self.query('Z','nominal_tube_OD')
         self.z_angle_le.setText(str(tmp[0]))
         tmp=self.query('pilot_hole_diameter','nominal_tube_OD')
@@ -186,6 +191,9 @@ class port_with_o_ring(QMainWindow):
         self.inch_tubing_OD_le.setText(str(tmp[0]))
         tmp=self.query('metric_tubing_OD','nominal_tube_OD')
         self.metric_tubing_OD_le.setText(str(tmp[0]))
+        tmp=self.query('minimum_hole_diameter','nominal_tube_OD')
+        self.minimum_hole_diameter.setText('Min.'+str(tmp[0]))
+
 
 
     def update_data_two(self):
@@ -198,9 +206,9 @@ class port_with_o_ring(QMainWindow):
         tmp=self.query('o_ring_seat_depth','thread_size')
         self.o_ring_depth_le.setText(str(tmp[0]))
         tmp=self.query('minimum_thread_depth','thread_size')
-        self.minimum_tap_depth.setText(str(tmp[0]))
+        self.minimum_tap_depth.setText('Min.'+str(tmp[0]))
         tmp=self.query('minimum_drill_depth','thread_size')
-        self.minimum_drill_depth.setText(str(tmp[0]))
+        self.minimum_drill_depth.setText('Min.'+str(tmp[0]))
         tmp=self.query('Z','thread_size')
         self.z_angle_le.setText(str(tmp[0]))
         tmp=self.query('pilot_hole_diameter','thread_size')
@@ -219,6 +227,8 @@ class port_with_o_ring(QMainWindow):
         self.inch_tubing_OD_le.setText(str(tmp[0]))
         tmp=self.query('metric_tubing_OD','thread_size')
         self.metric_tubing_OD_le.setText(str(tmp[0]))
+        tmp= self.query('minimum_hole_diameter','thread_size')
+        self.minimum_hole_diameter.setText('Min.'+str(tmp[0]))
 
 
 if __name__ == '__main__':
